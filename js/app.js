@@ -6,7 +6,7 @@ const PRODUCTS = [
     name: "Aloe Vera",
     type: "Succulent",
     price: 12.99, // GBP
-    image: "assets/images/aloeplant.png",
+    image: "assets/images/aloePlant.png",
     stock: 10,
     featured: true,
     care: "Bright, indirect light. Water every 2-3 weeks."
@@ -56,7 +56,7 @@ const PRODUCTS = [
     name: "Bromelia",
     type: "Succulent",
     price: 19.99,
-    image: "assets/images/featured5.png", // update path if needed
+    image: "assets/images/featured5.png",
     stock: 8,
     featured: true,
     care: "Bright, indirect light. Water moderately."
@@ -361,18 +361,18 @@ document.addEventListener('DOMContentLoaded', function() {
     `;    
 
     // Shipping calculation
-let discount = appliedDiscount ? subtotal * appliedDiscount : 0;
-let subtotalAfterDiscount = subtotal - discount;
-let shipping = subtotalAfterDiscount < 50 && subtotalAfterDiscount > 0 ? 7 : 0;
-let total = subtotalAfterDiscount + shipping;
+    let discount = appliedDiscount ? subtotal * appliedDiscount : 0;
+    let subtotalAfterDiscount = subtotal - discount;
+    let shipping = subtotalAfterDiscount < 50 && subtotalAfterDiscount > 0 ? 7 : 0;
+    let total = subtotalAfterDiscount + shipping;
 
-summaryDiv.innerHTML = `
-  <div class="mb-2"><strong>Subtotal:</strong> £${subtotal.toFixed(2)}</div>
-  ${discount > 0 ? `<div class="mb-2 text-success"><strong>Discount:</strong> -£${discount.toFixed(2)}</div>` : ""}
-  <div class="mb-2"><strong>Shipping:</strong> £${shipping.toFixed(2)} ${shipping === 0 ? '(Free over £50)' : ''}</div>
-  <div class="mb-2"><strong>Total:</strong> £${total.toFixed(2)}</div>
-  <div class="small text-muted">VAT included in product prices.</div>
-`;
+    summaryDiv.innerHTML = `
+      <div class="mb-2"><strong>Subtotal:</strong> £${subtotal.toFixed(2)}</div>
+      ${discount > 0 ? `<div class="mb-2 text-success"><strong>Discount:</strong> -£${discount.toFixed(2)}</div>` : ""}
+      <div class="mb-2"><strong>Shipping:</strong> £${shipping.toFixed(2)} ${shipping === 0 ? '(Free over £50)' : ''}</div>
+      <div class="mb-2"><strong>Total:</strong> £${total.toFixed(2)}</div>
+      <div class="small text-muted">VAT included in product prices.</div>
+    `;
 
     // Quantity change handler
     cartDiv.querySelectorAll('.cart-qty-input').forEach(input => {
@@ -498,20 +498,22 @@ if (document.getElementById('product-list')) {
       list.appendChild(groupHeader);
 
       const row = document.createElement("div");
-      row.className = "product-row" + (view === "list" ? " list-view" : "");
+      row.className = "row product-row" + (view === "list" ? " list-view" : "");
       group.products.forEach(product => {
         const col = document.createElement("div");
-        col.className = "product-col";
+        col.className = "col-12 col-sm-6 col-md-4 mb-4";
         col.id = `product-${product.id}`;
         col.innerHTML = `
-          <div class="product-card">
-            <img src="${product.img}" alt="${product.name}">
-            <div class="product-name">${product.name}</div>
-            <div class="product-id">ID: ${product.id}</div>
-            <div class="product-price">£${product.price.toFixed(2)}</div>
-            <div>Stock: ${product.stock}</div>
-            <button class="btn btn-success btn-sm add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
-            <button class="btn btn-info btn-sm details-btn" data-id="${product.id}">Details</button>
+          <div class="product-card h-100 d-flex flex-column">
+            <img src="${product.img}" alt="${product.name}" class="img-fluid mb-2" style="object-fit:contain;max-height:180px;">
+            <div class="product-name fw-bold">${product.name}</div>
+            <div class="product-id text-muted small">ID: ${product.id}</div>
+            <div class="product-price text-success mb-1">£${product.price.toFixed(2)}</div>
+            <div class="mb-2">Stock: ${product.stock}</div>
+            <div class="mt-auto">
+              <button class="btn btn-success btn-sm add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
+              <button class="btn btn-info btn-sm details-btn" data-id="${product.id}">Details</button>
+            </div>
             <div class="care-info" style="display:none; margin-top:0.5em; background:#e8f5e9; border-radius:0.5em; padding:0.5em; font-size:0.95em;"></div>
           </div>
         `;
@@ -583,14 +585,14 @@ if (document.getElementById('product-list')) {
 
 // --- Product Modal ---
 window.showProductModal = function(id) {
-  const p = findProduct(id);
+  const p = PRODUCTS.find(prod => prod.id === id);
   const modal = document.getElementById('productModal');
   if (!modal) return;
   document.getElementById('productModalContent').innerHTML = `
   <span class="close" onclick="closeModal('productModal')">&times;</span>
   <img src="${p.image}" alt="${p.name}" style="width:100%;border-radius:0.7em;">
   <h2>${p.name}</h2>
-  <div class="price">£${p.price.toFixed(2)}</div> <!-- Change $ to £ here -->
+  <div class="price">£${p.price.toFixed(2)}</div>
   <p>Type: ${p.type}</p>
   <button class="btn" onclick="showCareModal('${p.care}')">Light/Water Care</button>
   <button class="btn primary" onclick="addToCart(${p.id})">Add to Cart</button>
@@ -677,7 +679,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // --- Cart Count on All Pages ---
-// This function updates the cart count on all pages
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  document.querySelectorAll('#cart-count').forEach(el => el.textContent = cart.reduce((sum, item) => sum + item.qty, 0));
+}
 updateCartCount();
 
 // --- Featured Products Carousel (3 at a time, center projected) ---
@@ -701,7 +706,7 @@ updateCartCount();
         <div class="featured-product-card${i === 1 ? ' center' : ''}">
           <img src="${p.image}" alt="${p.name}">
           <h5>${p.name}</h5>
-          <div class="price">$${p.price}</div>
+          <div class="price">£${p.price.toFixed(2)}</div>
           <button class="btn btn-sm btn-success" onclick="addToCart(${p.id})">Add to Cart</button>
         </div>
       `).join('')}
@@ -789,7 +794,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var contactModal = document.getElementById('contactUsModal');
   var closeBtn = document.getElementById('closeContactUsModal');
   var contactForm = document.getElementById('contactUsForm');
-  var modalDialog = document.querySelector('#contactUsModal .custom-modal-dialog'); // <-- FIXED
+  var modalDialog = document.querySelector('#contactUsModal .custom-modal-dialog');
 
   if (contactLink && contactModal && closeBtn && contactForm && modalDialog) {
     contactLink.onclick = function(e) {
@@ -799,11 +804,9 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.onclick = function() {
       contactModal.classList.remove('active');
     };
-    // Only close when clicking the background, not inside the dialog
     contactModal.onclick = function(e) {
       if (e.target === contactModal) contactModal.classList.remove('active');
     };
-    // Prevent modal from closing when clicking inside the dialog
     modalDialog.onclick = function(e) {
       e.stopPropagation();
     };
@@ -984,11 +987,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-function updateCartCount() {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  document.querySelectorAll('#cart-count').forEach(el => el.textContent = cart.reduce((sum, item) => sum + item.qty, 0));
-}
-
+// --- Add to Cart Logic ---
 window.addToCart = function(id) {
   const product = PRODUCTS.find(p => p.id === id);
   if (!product) return;
