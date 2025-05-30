@@ -615,90 +615,63 @@ window.showCareModal = function(care) {
 
 // --- Login/Register Modal Logic ---
 document.addEventListener('DOMContentLoaded', function() {
-  // Navbar login button
-  var loginBtn = document.getElementById('loginBtn');
-  var loginModal = document.getElementById('loginModal');
-  var closeLogin = document.getElementById('closeLogin');
-  var loginFormSection = document.getElementById('loginFormSection');
-  var registerFormSection = document.getElementById('registerFormSection');
-  var showRegister = document.getElementById('showRegister');
-  var showLogin = document.getElementById('showLogin');
-  var loginForm = document.getElementById('loginForm');
-  var registerForm = document.getElementById('registerForm');
-  var modalDialog = document.querySelector('#loginModal .custom-modal-dialog');
+  const loginModal = document.getElementById('loginModal');
+  const loginFormSection = document.getElementById('loginFormSection');
+  const registerFormSection = document.getElementById('registerFormSection');
+  const showRegister = document.getElementById('showRegister');
+  const showLogin = document.getElementById('showLogin');
+  const loginBtn = document.getElementById('loginBtn');
+  const closeLogin = document.getElementById('closeLogin');
 
-  // Footer links
-  var footerLogin = document.getElementById('footerLoginLink');
-  var footerRegister = document.getElementById('footerRegisterLink');
-
-  function openLogin() {
-    loginModal.classList.add('active');
-    loginFormSection.style.display = '';
-    registerFormSection.style.display = 'none';
-  }
-  function openRegister() {
-    loginModal.classList.add('active');
-    loginFormSection.style.display = 'none';
-    registerFormSection.style.display = '';
-  }
-
-  if (loginBtn) {
-    loginBtn.onclick = function(e) {
-      e.preventDefault();
-      openLogin();
+  if (loginBtn && loginModal) {
+    loginBtn.onclick = function() {
+      loginModal.classList.add('active');
+      loginFormSection.style.display = '';
+      registerFormSection.style.display = 'none';
     };
   }
-  if (footerLogin) {
-    footerLogin.onclick = function(e) {
-      e.preventDefault();
-      openLogin();
-    };
-  }
-  if (footerRegister) {
-    footerRegister.onclick = function(e) {
-      e.preventDefault();
-      openRegister();
+  if (closeLogin && loginModal) {
+    closeLogin.onclick = function() {
+      loginModal.classList.remove('active');
     };
   }
   if (showRegister) {
     showRegister.onclick = function(e) {
       e.preventDefault();
-      openRegister();
+      loginFormSection.style.display = 'none';
+      registerFormSection.style.display = '';
     };
   }
   if (showLogin) {
     showLogin.onclick = function(e) {
       e.preventDefault();
-      openLogin();
+      loginFormSection.style.display = '';
+      registerFormSection.style.display = 'none';
     };
   }
-  if (closeLogin) {
-    closeLogin.onclick = function() {
-      loginModal.classList.remove('active');
-    };
-  }
-  if (loginModal && modalDialog) {
-    loginModal.onclick = function(e) {
-      if (e.target === loginModal) loginModal.classList.remove('active');
-    };
-    modalDialog.onclick = function(e) {
-      e.stopPropagation();
-    };
-  }
-  if (loginForm) {
-    loginForm.onsubmit = function(e) {
+
+  // Footer Login/Register links
+  const footerLoginLink = document.getElementById('footerLoginLink');
+  const footerRegisterLink = document.getElementById('footerRegisterLink');
+
+  if (footerLoginLink) {
+    footerLoginLink.onclick = function(e) {
       e.preventDefault();
-      alert('Login successful! (Demo)');
-      loginModal.classList.remove('active');
-      loginForm.reset();
+      if (loginModal && loginFormSection && registerFormSection) {
+        loginModal.classList.add('active');
+        loginFormSection.style.display = '';
+        registerFormSection.style.display = 'none';
+      }
     };
   }
-  if (registerForm) {
-    registerForm.onsubmit = function(e) {
+  if (footerRegisterLink) {
+    footerRegisterLink.onclick = function(e) {
       e.preventDefault();
-      alert('Registration successful! (Demo)');
-      loginModal.classList.remove('active');
-      registerForm.reset();
+      if (loginModal && loginFormSection && registerFormSection) {
+        loginModal.classList.add('active');
+        loginFormSection.style.display = 'none';
+        registerFormSection.style.display = '';
+      }
     };
   }
 });

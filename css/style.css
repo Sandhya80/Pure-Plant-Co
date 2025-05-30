@@ -8,6 +8,7 @@ body {
 
 .logo {
   height: 40px;
+  max-height: 40px;
   width: auto;
   margin-right: 0.5em;
 }
@@ -428,6 +429,9 @@ body {
 .trustpilot-section .border {
   border-color: #b6e2a1 !important;
 }
+.trustpilot-logo {
+  max-width: 180px; 
+}
 
 /* --- Contact Us Modal (CLEAN VERSION) --- */
 .custom-modal-bg {
@@ -499,3 +503,96 @@ main.container {
   color: #fff !important;
   border-color: #198754 !important;
 }
+/* --- End Cart page styles --- */
+
+/* Adding custom styles for Shop page */
+.main-margin-top {
+  margin-top: 90px;
+}
+.logo {
+  max-height: 40px; 
+}
+
+/* --- Responsive Enhancements --- */
+/* General responsive styles for better mobile experience */
+
+/* 1. Make all images responsive */
+img, .carousel-img, .featured-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 2. Responsive modal dialog for all modals */
+@media (max-width: 400px) {
+  .custom-modal-dialog {
+    max-width: 98vw;
+    padding: 1em 0.5em;
+  }
+}
+
+/* 3. Featured Products Carousel Columns: stack on mobile */
+@media (max-width: 767.98px) {
+  .featured-carousel-section .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* 4. Footer and Trustpilot Section: spacing and centering on mobile */
+@media (max-width: 767.98px) {
+  .footer-section .row > div {
+    margin-bottom: 2em;
+    text-align: center;
+  }
+  .footer-section .footer-social {
+    justify-content: center;
+  }
+  .trustpilot-section .col-12, .trustpilot-section .col-md-4 {
+    margin-bottom: 1.5em;
+  }
+}
+
+/* 5. Navbar Searchbar on Mobile: full width */
+@media (max-width: 991.98px) {
+  .navbar .searchbar-container {
+    width: 100%;
+    margin: 0.5em 0;
+  }
+  .navbar .form-control-sm {
+    width: 100%;
+  }
+}
+
+/* 6. Carousel Caption Text: scale for mobile */
+.carousel-caption h2,
+.carousel-caption p {
+  font-size: 1.2em;
+}
+@media (max-width: 576px) {
+  .carousel-caption {
+    left: 5%;
+    right: 5%;
+    padding: 0.5em 0.5em;
+  }
+  .carousel-caption h2 {
+    font-size: 1.1em;
+  }
+  .carousel-caption p {
+    font-size: 0.95em;
+  }
+  .carousel-caption .btn {
+    font-size: 0.95em;
+    padding: 0.5em 1.2em;
+  }
+}
+
+/* 7. General container padding for mobile */
+@media (max-width: 576px) {
+  .container, .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* --- End Responsive Enhancements --- */
