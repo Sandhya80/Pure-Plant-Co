@@ -412,7 +412,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // --- Discount Code Logic ---
 const discounts = {
   "PLANT10": 0.10,
-  "GREEN15": 0.15
+  "GREEN15": 0.15,
+  "SUCCULENT20": 0.20,
+  "BONSAI25": 0.25,
+  "HOUSEPLANT30": 0.30,
+  "PLANTLOVE": 0.05,
+  "FREESHIP": 0.00 // Special code for free shipping, not a discount
 };
 let appliedDiscount = 0;
 
@@ -501,7 +506,8 @@ if (document.getElementById('product-list')) {
       row.className = "row product-row" + (view === "list" ? " list-view" : "");
       group.products.forEach(product => {
         const col = document.createElement("div");
-        col.className = "col-12 col-sm-6 col-md-4 mb-4";
+        // *** THIS IS THE KEY LINE FOR 3/2/1 GRID ***
+        col.className = "col-12 col-md-6 col-lg-4 mb-4";
         col.id = `product-${product.id}`;
         col.innerHTML = `
           <div class="product-card h-100 d-flex flex-column">
@@ -713,16 +719,6 @@ updateCartCount();
     </div>
   `).join('');
 
-  // Center the middle card on each slide after slide event
-  const carousel = document.getElementById('featuredCarousel');
-  if (carousel) {
-    carousel.addEventListener('slid.bs.carousel', function () {
-      document.querySelectorAll('.carousel-item').forEach(item => {
-        const cards = item.querySelectorAll('.featured-product-card');
-        cards.forEach((card, idx) => card.classList.toggle('center', idx === 1));
-      });
-    });
-  }
 })();
 
 // --- Search Bar Logic ---
