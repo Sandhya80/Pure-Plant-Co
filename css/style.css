@@ -397,6 +397,10 @@ body {
 .footer-section .small {
   color: #b0b0b0;
 }
+.footer-copyright {
+  color: #e6f2e6 !important;
+  opacity: 0.85;
+}
 
 /* --- Trustpilot Section --- */
 .trustpilot-section {
