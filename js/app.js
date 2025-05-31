@@ -1,4 +1,5 @@
-// --- Product Data ---
+// =================== Product Data ===================
+// List of all products with details for shop and cart functionality
 const PRODUCTS = [
   // --- Succulents ---
   {
@@ -309,7 +310,8 @@ const PRODUCTS = [
   }
 ];
 
-// --- Cart Page Rendering Logic ---
+// =================== Cart Page Rendering Logic ===================
+// Handles rendering of cart items, summary, and updating cart in localStorage
 document.addEventListener('DOMContentLoaded', function() {
   const cartDiv = document.getElementById('cart-container');
   const summaryDiv = document.getElementById('cart-summary');
@@ -409,7 +411,8 @@ document.addEventListener('DOMContentLoaded', function() {
   renderCart();
 });
 
-// --- Discount Code Logic ---
+// =================== Discount Code Logic ===================
+// Handles applying discount codes and updating totals
 const discounts = {
   "PLANT10": 0.10,
   "GREEN15": 0.15,
@@ -441,7 +444,8 @@ if (applyDiscountBtn && discountInput) {
   };
 }
 
-// --- Grouped Products ---
+// =================== Grouped Products ===================
+// Groups products by type for shop page display
 function generateGroupedProducts(productsArray) {
   const allowedGroups = {
     "Succulent": "Succulents",
@@ -472,7 +476,8 @@ function generateGroupedProducts(productsArray) {
 const groupedProducts = generateGroupedProducts(PRODUCTS);
 
 
-// --- Home Page: Featured Products ---
+// =================== Home Page: Featured Products ===================
+// Renders featured products on the homepage if present
 if (document.getElementById('featured-products')) {
   const featuredDiv = document.getElementById('featured-products');
   featuredDiv.innerHTML = PRODUCTS.filter(p => p.featured).map(p => `
@@ -486,7 +491,8 @@ if (document.getElementById('featured-products')) {
   `).join('');
 }
 
-// --- Shop Page: Product Listing ---
+// =================== Shop Page: Product Listing ===================
+// Handles rendering of products, filtering, and view toggle (grid/list)
 if (document.getElementById('product-list')) {
   let filterType = 'all';
   function renderProducts(view = "grid") {
@@ -589,7 +595,8 @@ if (document.getElementById('product-list')) {
   });
 }
 
-// --- Product Modal ---
+// =================== Product Modal ===================
+// Shows modal with product details and care instructions
 window.showProductModal = function(id) {
   const p = PRODUCTS.find(prod => prod.id === id);
   const modal = document.getElementById('productModal');
@@ -609,7 +616,8 @@ window.closeModal = function(id) {
   document.getElementById(id).classList.remove('active');
 };
 
-// --- Care Instructions Modal ---
+// =================== Care Instructions Modal ===================
+// Shows care instructions in the product modal
 window.showCareModal = function(care) {
   const modal = document.getElementById('productModal');
   document.getElementById('productModalContent').innerHTML += `
@@ -621,7 +629,8 @@ window.showCareModal = function(care) {
   `;
 };
 
-// --- Login/Register Modal Logic ---
+// =================== Login/Register Modal Logic ===================
+// Handles login/register modal open/close and switching forms
 document.addEventListener('DOMContentLoaded', function() {
   const loginModal = document.getElementById('loginModal');
   const loginFormSection = document.getElementById('loginFormSection');
@@ -684,14 +693,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Cart Count on All Pages ---
+// =================== Cart Count on All Pages ===================
+// Updates cart count badge in navbar
 function updateCartCount() {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   document.querySelectorAll('#cart-count').forEach(el => el.textContent = cart.reduce((sum, item) => sum + item.qty, 0));
 }
 updateCartCount();
 
-// --- Featured Products Carousel (3 at a time, center projected) ---
+// =================== Featured Products Carousel ===================
+// Renders featured products in a carousel (if present)
 (function() {
   const featuredDiv = document.getElementById('featured-carousel-inner');
   if (!featuredDiv || typeof PRODUCTS === "undefined") return;
@@ -721,7 +732,8 @@ updateCartCount();
 
 })();
 
-// --- Search Bar Logic ---
+// =================== Search Bar Logic ===================
+// Handles live search in the navbar and displays results
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('navbarSearch');
   const resultsDiv = document.getElementById('searchResults');
@@ -771,7 +783,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Optional: Smooth caption animation on slide ---
+// =================== Optional: Smooth caption animation on slide ===================
+// Animates carousel captions on slide change
 const heroCarousel = document.getElementById('heroCarousel');
 if (heroCarousel) {
   heroCarousel.addEventListener('slide.bs.carousel', function (e) {
@@ -784,7 +797,8 @@ if (heroCarousel) {
   });
 }
 
-// --- Contact Us Modal Logic ---
+// =================== Contact Us Modal Logic ===================
+// Handles opening, closing, and submitting the Contact Us modal
 document.addEventListener('DOMContentLoaded', function() {
   var contactLink = document.getElementById('contactUsFooterLink');
   var contactModal = document.getElementById('contactUsModal');
@@ -815,7 +829,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- FAQ Modal Logic ---
+// =================== FAQ Modal Logic ===================
+// Handles opening and closing the FAQ modal
 document.addEventListener('DOMContentLoaded', function() {
   var faqLink = document.getElementById('faqFooterLink');
   var faqModal = document.getElementById('faqModal');
@@ -839,7 +854,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Shipping Info Modal Logic ---
+// =================== Shipping Info Modal Logic ===================
+// Handles opening and closing the Shipping Info modal
 document.addEventListener('DOMContentLoaded', function() {
   var shippingLink = document.getElementById('shippingInfoFooterLink');
   var shippingModal = document.getElementById('shippingInfoModal');
@@ -863,7 +879,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Returns Policy Modal Logic ---
+// =================== Returns Policy Modal Logic ===================
+// Handles opening and closing the Returns modal
 document.addEventListener('DOMContentLoaded', function() {
   var returnsLink = document.getElementById('returnsFooterLink');
   var returnsModal = document.getElementById('returnsModal');
@@ -887,7 +904,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Our Story Modal Logic ---
+// =================== Our Story Modal Logic ===================
+// Handles opening and closing the Our Story modal
 document.addEventListener('DOMContentLoaded', function() {
   var ourStoryLink = document.getElementById('ourStoryFooterLink');
   var ourStoryModal = document.getElementById('ourStoryModal');
@@ -911,7 +929,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Sustainability Modal Logic ---
+// =================== Sustainability Modal Logic ===================
+// Handles opening and closing the Sustainability modal
 document.addEventListener('DOMContentLoaded', function() {
   var sustainabilityLink = document.getElementById('sustainabilityFooterLink');
   var sustainabilityModal = document.getElementById('sustainabilityModal');
@@ -935,7 +954,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Careers Modal Logic ---
+// =================== Careers Modal Logic ===================
+// Handles opening and closing the Careers modal
 document.addEventListener('DOMContentLoaded', function() {
   var careersLink = document.getElementById('careersFooterLink');
   var careersModal = document.getElementById('careersModal');
@@ -959,7 +979,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Blog Modal Logic ---
+// =================== Blog Modal Logic ===================
+// Handles opening and closing the Blog modal
 document.addEventListener('DOMContentLoaded', function() {
   var blogLink = document.getElementById('blogFooterLink');
   var blogModal = document.getElementById('blogModal');
@@ -983,7 +1004,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// --- Add to Cart Logic ---
+// =================== Add to Cart Logic ===================
+// Adds a product to the cart and updates localStorage
 window.addToCart = function(id) {
   const product = PRODUCTS.find(p => p.id === id);
   if (!product) return;
@@ -1003,7 +1025,8 @@ window.addToCart = function(id) {
   alert('Added to cart!');
 };
 
-// --- Checkout Modal Logic ---
+// =================== Checkout Modal Logic ===================
+// Handles opening, closing, and rendering the checkout modal
 const checkoutBtn = document.getElementById('checkoutBtn');
 const checkoutModal = document.getElementById('checkoutModal');
 const closeCheckout = document.getElementById('closeCheckout');
@@ -1064,7 +1087,8 @@ if (checkoutModal) {
   if (modalDialog) modalDialog.onclick = e => e.stopPropagation();
 }
 
-// --- Payment Modal Logic ---
+// =================== Payment Modal Logic ===================
+// Handles payment modal open/close and payment form submission
 const paymentModal = document.getElementById('paymentModal');
 const closePaymentModal = document.getElementById('closePaymentModal');
 const paymentDetailsForm = document.getElementById('paymentDetailsForm');
@@ -1092,7 +1116,8 @@ if (paymentDetailsForm) {
   };
 }
 
-// --- Show Payment Modal on Pay Now ---
+// =================== Show Payment Modal on Pay Now ===================
+// Shows payment modal when Pay Now is clicked in checkout
 if (paymentForm) {
   paymentForm.onsubmit = function(e) {
     e.preventDefault();

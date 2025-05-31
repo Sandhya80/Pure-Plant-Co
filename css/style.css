@@ -1,3 +1,4 @@
+/* =================== Base Styles =================== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #f3f3f5;
@@ -6,6 +7,7 @@ body {
   padding-top: 56px; /* For fixed-top navbar */
 }
 
+/* =================== Logo =================== */
 .logo {
   height: 40px;
   max-height: 40px;
@@ -13,22 +15,22 @@ body {
   margin-right: 0.5em;
 }
 
+/* =================== Navbar =================== */
 .navbar {
   background: #b3c9b5;
   box-shadow: 0 2px 8px rgba(60,60,60,0.08);
 }
-
 .navbar nav a, .navbar .btn {
   margin-left: 1em;
   color: #74a174;
   text-decoration: none;
   font-weight: 500;
 }
-
 .navbar nav a:hover, .navbar .btn:hover {
   color: #388e3c!important;
 }
 
+/* =================== Filters (Shop Page) =================== */
 .filters {
   margin: 1.5em 0 1em 0;
   display: flex;
@@ -50,6 +52,7 @@ body {
   color: #256029;
 }
 
+/* =================== View Toggle (Shop Page) =================== */
 .view-toggle {
   display: flex;
   justify-content: center;
@@ -57,6 +60,7 @@ body {
   margin-bottom: 1.5em;
 }
 
+/* =================== Featured Products Section =================== */
 .featured-products {
   display: flex;
   flex-direction: column;
@@ -67,7 +71,7 @@ body {
 /* --- REMOVE ALL CUSTOM FLEX/GRID RULES FOR .row, .product-row, .product-row > .col-* --- */
 /* DO NOT override Bootstrap's .row or .col-* classes for the shop grid! */
 
-/* --- Product Card Styles (keep as is) --- */
+/* =================== Product Card Styles =================== */
 .product-card {
   background: #fff;
   border-radius: 1em;
@@ -133,7 +137,8 @@ body {
   font-size: 0.95em;
   color: #256029;
 }
-/* List view for shop page */
+
+/* =================== List View for Shop Page =================== */
 .product-row.list-view > .col-12,
 .product-row.list-view > .col-md-6,
 .product-row.list-view > .col-lg-4 {
@@ -141,7 +146,6 @@ body {
   max-width: 100% !important;
   width: 100% !important;
 }
-
 .product-row.list-view .product-card {
   flex-direction: row;
   align-items: flex-start;
@@ -161,7 +165,7 @@ body {
   flex: 1 1 0;
 }
 
-/* --- Searchbar --- */
+/* =================== Searchbar =================== */
 .searchbar-container {
   position: relative;
   min-width: 120px;
@@ -203,21 +207,18 @@ body {
   color: #256029;
 }
 
-/* --- Hero/Carousel --- */
+/* =================== Hero/Carousel =================== */
 .carousel-hero {
   position: relative;
   margin-bottom: 2rem;
 }
-
 .carousel-hero .carousel-inner,
 .carousel-hero .carousel-item {
   height: 420px;
 }
-
 .carousel-hero .carousel-item {
   position: relative;
 }
-
 .carousel-hero .carousel-img {
   width: 100%;
   height: 100%;
@@ -225,7 +226,6 @@ body {
   object-position: center;
   display: block;
 }
-
 .carousel-hero .carousel-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -233,8 +233,7 @@ body {
   z-index: 1;
   pointer-events: none;
 }
-
-/* --- Fix Bootstrap carousel-caption for hero carousel --- */
+/* Fix Bootstrap carousel-caption for hero carousel */
 .carousel-hero .carousel-caption {
   bottom: unset !important;
   left: 50% !important;
@@ -250,7 +249,6 @@ body {
   text-align: center;
   z-index: 2;
 }
-
 @media (max-width: 767px) {
   .carousel-hero .carousel-inner,
   .carousel-hero .carousel-item {
@@ -295,7 +293,7 @@ body {
   transform: translateY(0);
 }
 
-/* --- Featured Products Carousel --- */
+/* =================== Featured Products Carousel =================== */
 .featured-carousel-section {
   margin-bottom: 3em;
 }
@@ -342,7 +340,7 @@ body {
   border-radius: 0.3em;
 }
 
-/* --- About Section --- */
+/* =================== About Section =================== */
 .about-pure-plant {
   background: #f6fff6;
   border-radius: 1.2em;
@@ -366,7 +364,7 @@ body {
   color: #4caf50;
 }
 
-/* --- Footer --- */
+/* =================== Footer =================== */
 .footer-section {
   background: #222;
   color: #e6f2e6;
@@ -402,7 +400,7 @@ body {
   opacity: 0.85;
 }
 
-/* --- Trustpilot Section --- */
+/* =================== Trustpilot Section =================== */
 .trustpilot-section {
   background: #f6fff6;
 }
@@ -416,7 +414,7 @@ body {
   max-width: 180px; 
 }
 
-/* --- Contact Us Modal (CLEAN VERSION) --- */
+/* =================== Contact Us Modal =================== */
 .custom-modal-bg {
   display: none;
   position: fixed;
@@ -451,15 +449,13 @@ body {
   line-height: 1;
 }
 
-/* Adding custom styles below for Cart page */
-
+/* =================== Cart Page Styles =================== */
 main.container {
   margin-top: 80px; 
 }
 .custom-modal-maxwidth-400 {
   max-width: 300px; 
 }
-
 /* Smaller cart container */
 .cart-container-small {
   max-width: 500px;
@@ -469,7 +465,6 @@ main.container {
   box-shadow: 0 2px 12px rgba(60,60,60,0.10);
   padding: 2em 1.5em;
 }
-
 /* Make summary and discount section match */
 .cart-summary,
 .discount-section {
@@ -477,7 +472,6 @@ main.container {
   margin-left: auto;
   margin-right: auto;
 }
-
 /* Fix for Login/Register button active/focus/pressed state */
 .btn-outline-success:active,
 .btn-outline-success.active,
@@ -488,7 +482,7 @@ main.container {
 }
 /* --- End Cart page styles --- */
 
-/* Adding custom styles for Shop page */
+/* =================== Shop Page Custom Styles =================== */
 .main-margin-top {
   margin-top: 90px;
 }
@@ -496,16 +490,13 @@ main.container {
   max-height: 40px; 
 }
 
-/* --- Responsive Enhancements --- */
-/* General responsive styles for better mobile experience */
-
+/* =================== Responsive Enhancements =================== */
 /* 1. Make all images responsive */
 img, .carousel-img, .featured-img {
   max-width: 100%;
   height: auto;
   display: block;
 }
-
 /* 2. Responsive modal dialog for all modals */
 @media (max-width: 400px) {
   .custom-modal-dialog {
@@ -513,7 +504,6 @@ img, .carousel-img, .featured-img {
     padding: 1em 0.5em;
   }
 }
-
 /* 3. Featured Products Carousel Columns: stack on mobile */
 @media (max-width: 767.98px) {
   .featured-carousel-section .col-md-4 {
@@ -521,7 +511,6 @@ img, .carousel-img, .featured-img {
     max-width: 100%;
   }
 }
-
 /* 4. Footer and Trustpilot Section: spacing and centering on mobile */
 @media (max-width: 767.98px) {
   .footer-section .row > div {
@@ -535,7 +524,6 @@ img, .carousel-img, .featured-img {
     margin-bottom: 1.5em;
   }
 }
-
 /* 5. Navbar Searchbar on Mobile: full width */
 @media (max-width: 991.98px) {
   .navbar .searchbar-container {
@@ -546,7 +534,6 @@ img, .carousel-img, .featured-img {
     width: 100%;
   }
 }
-
 /* 6. Carousel Caption Text: scale for mobile */
 .carousel-caption h2,
 .carousel-caption p {
@@ -569,7 +556,6 @@ img, .carousel-img, .featured-img {
     padding: 0.5em 1.2em;
   }
 }
-
 /* 7. General container padding for mobile */
 @media (max-width: 576px) {
   .container, .container-fluid {
@@ -577,7 +563,6 @@ img, .carousel-img, .featured-img {
     padding-right: 10px;
   }
 }
-
 /* Highlight all featured product cards in the carousel */
 .featured-img.featured-highlight {
   box-shadow: 0 0 20px 0 #23744e, 0 2px 12px rgba(60,60,60,0.10);
@@ -588,7 +573,6 @@ img, .carousel-img, .featured-img {
   box-shadow: 0 0 32px 0 #388e3c, 0 4px 24px rgba(60,60,60,0.18);
   border-color: #388e3c;
 }
-
 /* --- End Responsive Enhancements --- */
 
 /* --- DO NOT ADD ANY FLEX OR WIDTH RULES TO .row, .product-row, OR .product-row > .col-* --- */
